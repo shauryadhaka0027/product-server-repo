@@ -39,10 +39,10 @@ export const login = async (req, res) => {
       expiresIn: "1h",
     });
     res.cookie("token", token, {
-      httpOnly: true,
+      httpOnly:false,
       secure: true, 
       maxAge: 10 * 24 * 60 * 60 * 1000, 
-      sameSite: "Lax", 
+      sameSite: "none", 
     });
 
     const refreshToken = jwt.sign({ id: user._id }, process.env.TOKEN_Key, {
