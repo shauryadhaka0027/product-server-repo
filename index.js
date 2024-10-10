@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cookieParser())
 
 app.use(cors({
-    origin:"https://product-client-repo.vercel.app",
+    origin:["https://product-client-repo.vercel.app","http://localhost:5173"],
     credentials: true,
     methods: ['GET', 'POST', 'DELETE', 'PATCH'],
 }));

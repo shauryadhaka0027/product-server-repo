@@ -39,10 +39,10 @@ export const login = async (req, res) => {
       expiresIn: "1h",
     });
     res.cookie("token", token, {
-      httpOnly: false,
-      secure: false, // Use secure cookies in production
-      maxAge: 10 * 24 * 60 * 60 * 1000, // 10 days
-      sameSite: "Lax", // Use 'Lax' or 'None' if your frontend and backend are on different domains
+      httpOnly: true,
+      secure: true, 
+      maxAge: 10 * 24 * 60 * 60 * 1000, 
+      sameSite: "Lax", 
     });
 
     const refreshToken = jwt.sign({ id: user._id }, process.env.TOKEN_Key, {
