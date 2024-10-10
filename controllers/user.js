@@ -40,10 +40,11 @@ export const login = async (req, res) => {
     });
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true, 
-      maxAge: 10 * 24 * 60 * 60 * 1000, 
-      sameSite: "Lax", 
+      secure: process.env.NODE_ENV === 'production',  // secure only in production
+      maxAge: 10 * 24 * 60 * 60 * 1000,  // 10 days
+      sameSite: process.env.NODE_ENV === 'production' ? "Lax" : "Strict",  // Lax for production, Strict for dev
     });
+    
 
     const refreshToken = jwt.sign({ id: user._id }, process.env.TOKEN_Key, {
       expiresIn: "5d",
